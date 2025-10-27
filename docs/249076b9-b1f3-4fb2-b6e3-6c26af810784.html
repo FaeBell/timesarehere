@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cassette Beasts</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('249076b9-b1f3-4fb2-b6e3-6c26af810784/d3c560da-ad05-4233-8198-641fc8d1df8c.png');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="249076b9-b1f3-4fb2-b6e3-6c26af810784/0f9554bc-9b03-47ca-8b1c-5182a04da3eb.png"/> Cassette Beasts</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="249076b9-b1f3-4fb2-b6e3-6c26af810784/ff6e5f9e-1736-4d56-8ebd-49909113d4c3.png"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-22/09/2025">22/09/2025</a> 19:53:17</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-22/09/2025">22/09/2025</a> 19:53:58</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Linux)">PC (Linux)</a><br/><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Achievements">Achievements</a><br/><a href="#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="#quicklink-Co-Op">Co-Op</a><br/><a href="#quicklink-Family Sharing">Family Sharing</a><br/><a href="#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="#quicklink-Multi-Player">Multi-Player</a><br/><a href="#quicklink-Online Pvp">Online Pvp</a><br/><a href="#quicklink-Pvp">Pvp</a><br/><a href="#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1321440" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1321440/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1321440/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1321440" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/1321440" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1321440" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1321440/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-3D">3D</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Cartoony">Cartoony</a><br/><a href="#quicklink-Collectathon">Collectathon</a><br/><a href="#quicklink-Colorful">Colorful</a><br/><a href="#quicklink-Comedy">Comedy</a><br/><a href="#quicklink-Controller">Controller</a><br/><a href="#quicklink-Co-op">Co-op</a><br/><a href="#quicklink-Creature Collector">Creature Collector</a><br/><a href="#quicklink-JRPG">JRPG</a><br/><a href="#quicklink-Local Co-Op">Local Co-Op</a><br/><a href="#quicklink-Open World">Open World</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-PvP">PvP</a><br/><a href="#quicklink-Relaxing">Relaxing</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-Sandbox">Sandbox</a><br/><a href="#quicklink-Singleplayer">Singleplayer</a><br/><a href="#quicklink-Turn-Based Combat">Turn-Based Combat</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4984a69b26ad7ad0d4f2b692fea87a45.poster.avif?t=1758030366" width=616 height=346 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4984a69b26ad7ad0d4f2b692fea87a45.webm?t=1758030366" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4984a69b26ad7ad0d4f2b692fea87a45.mp4?t=1758030366" type="video/mp4"></video></span></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Adventure. Battle. Transform.</strong></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Collect awesome monsters</strong> to use during turn-based battles in this open-world RPG. Combine any two monster forms using Cassette Beasts’ Fusion System to create unique and powerful new ones!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Welcome to New Wirral</strong>, a remote island inhabited by strange creatures you’ve only dreamed of, nightmares you <i>hopefully</i> haven’t, and a cast of brave folks who use cassette tapes to transform for battle. To find a way home you’ll need to explore every inch of the island, and record monsters to your trusty cassette tapes to gain their abilities!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline crossorigin="anonymous" poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/e5a15372133406cef59c5b79f7ce41fa.poster.avif?t=1758030366" width=616 height=124 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/e5a15372133406cef59c5b79f7ce41fa.webm?t=1758030366" type="video/webm; codecs=vp9"></video></span></p><p class="bb_paragraph" ><strong>Transform into monsters...using retro cassette tapes?!</strong></p><p class="bb_paragraph" >Faced with the constant threat of monster attacks, the residents of Harbourtown, New Wirral choose to fight fire with fire. Record a monster to tape, then play it back to take on its form for battle!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline crossorigin="anonymous" poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/7b1748d8c9069141ea23aafd00e63bef.poster.avif?t=1758030366" width=616 height=124 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/7b1748d8c9069141ea23aafd00e63bef.webm?t=1758030366" type="video/webm; codecs=vp9"></video></span><strong>Fuse monster forms!</strong></p><p class="bb_paragraph" >Getting close to your companion has benefits–while transformed you can combine your strengths to gain the upper hand in battle! Any two monster forms can be fused to produce unique, fully-animated new fusion forms.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline crossorigin="anonymous" poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4e354deb9d179a2bb87a2dd00caed78b.poster.avif?t=1758030366" width=616 height=124 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4e354deb9d179a2bb87a2dd00caed78b.webm?t=1758030366" type="video/webm; codecs=vp9"></video></span><strong>Explore a rich open world</strong></p><p class="bb_paragraph" >Certain monster abilities can be used in human form. You’ll need these to help you get around, solve puzzles, and locate dungeons. Glide, fly, swim, climb, dash, or turn magnetic! Take on the Gauntlet – a never-ending battle mode where you’ll face fearsome enemies for precious material and glory!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/a54364fd141fa02f9747fc6b273605b5.avif?t=1758030366" width=616 height=124 /></span><strong>Travel alongside a diverse cast of human companions</strong></p><p class="bb_paragraph" >Never fight alone! Form bonds, spend time together, and help your selected partner complete personal goals to become a better team. The strength of your relationship determines how well you’re able to fuse!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline crossorigin="anonymous" poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4b6580aa54e14a404d1820a62e28af32.poster.avif?t=1758030366" width=616 height=124 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/4b6580aa54e14a404d1820a62e28af32.webm?t=1758030366" type="video/webm; codecs=vp9"></video></span><strong>Master a deep battle system</strong></p><p class="bb_paragraph" >Take advantage of elemental chemistry to apply extra buffs or debuffs alongside your attack, or even alter your opponent’s elemental type!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline crossorigin="anonymous" poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/9de39c619813aa363ab198b43c5fa269.poster.avif?t=1758030366" width=616 height=124 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/9de39c619813aa363ab198b43c5fa269.webm?t=1758030366" type="video/webm; codecs=vp9"></video></span><strong>Play with Friends</strong></p><p class="bb_paragraph" >Team up with a friend in local multiplayer to explore, transform, and fight together! Party up with Online Multiplayer to trade monster tapes, challenge your friends to 1v1 battles, and team up to take on powerful Rogue Fusion beasts for great rewards!  </p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1321440/extras/eacfbd086c763b9469401624a8c4780e.avif?t=1758030366" width=616 height=100 /></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

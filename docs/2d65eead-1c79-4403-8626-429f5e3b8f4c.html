@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kitaria Fables</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2d65eead-1c79-4403-8626-429f5e3b8f4c/1be286b6-d458-4e35-aaae-646a42fd3032.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="2d65eead-1c79-4403-8626-429f5e3b8f4c/2709e113-80a6-46a8-9ca7-38cd4caf2b28.png"/> Kitaria Fables</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="2d65eead-1c79-4403-8626-429f5e3b8f4c/591a560a-35c2-4250-b6a2-26c3eab12544.png"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-5/06/2025">5/06/2025</a> 3:25:10</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-6/06/2025">6/06/2025</a> 20:49:21</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Action">Action</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Achievements">Achievements</a><br/><a href="#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="#quicklink-Co-Op">Co-Op</a><br/><a href="#quicklink-Family Sharing">Family Sharing</a><br/><a href="#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="#quicklink-Multi-Player">Multi-Player</a><br/><a href="#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="#quicklink-Single-Player">Single-Player</a><br/><a href="#quicklink-Supports Couch Co-Op">Supports Couch Co-Op</a><br/><a href="#quicklink-Supports Drop-In/Drop-Out Co-Op">Supports Drop-In/Drop-Out Co-Op</a><br/><a href="#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1356280" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1356280/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1356280/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1356280" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/1356280" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1356280" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1356280/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Action">Action</a><br/><a href="#quicklink-Action RPG">Action RPG</a><br/><a href="#quicklink-Action-Adventure">Action-Adventure</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Agriculture">Agriculture</a><br/><a href="#quicklink-Archery">Archery</a><br/><a href="#quicklink-Combat">Combat</a><br/><a href="#quicklink-Co-op">Co-op</a><br/><a href="#quicklink-Co-op Campaign">Co-op Campaign</a><br/><a href="#quicklink-Crafting">Crafting</a><br/><a href="#quicklink-Cute">Cute</a><br/><a href="#quicklink-Exploration">Exploration</a><br/><a href="#quicklink-Family Friendly">Family Friendly</a><br/><a href="#quicklink-Farming Sim">Farming Sim</a><br/><a href="#quicklink-Local Co-Op">Local Co-Op</a><br/><a href="#quicklink-Local Multiplayer">Local Multiplayer</a><br/><a href="#quicklink-Loot">Loot</a><br/><a href="#quicklink-Magic">Magic</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-Singleplayer">Singleplayer</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Kitaria Fables is a delightfully cute action adventure RPG with farming and crafting! Enter the cute world of Kitaria and take on the quests of your animal neighbours as they face a rising tide of darkness. Real time combat, exploration and dungeoneering sit alongside farming for provisions and the crafting of weapons and armour, and forging new spells to increase your power.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/KITA_STEAMTITLE_1.png?t=1745483002" /><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/Traversal.gif?t=1745483002" /><br><br>A peaceful land where nature lives in harmony - until now. As the wildlife around Paw Village becomes increasingly aggressive, The Empire has called upon you to investigate and defend its citizens. Make your way to Paw Village to your Uncles home, and from your new base, explore the huge world teaming with wildlife, resources and loot to help you in the long journey ahead.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/KITA_STEAMTITLE_2.png?t=1745483002" /><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/Final-combat.gif?t=1745483002" /><br><br>Wield melee weapons and bows and forge new spells. Kit your loadout in a way which suits your preferred style of battle and craft magic, weapons and armour which compliment your play style. Do your prefer to burn your enemies from a distance, freeze them where they stand, or trust in sword or bow to do your damage?<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/KITA_STEAMTITLE_3.png?t=1745483002" /><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/Shop-text.gif?t=1745483002" /><br><br>You'll need much more than brute strength and magic to survive the coming darkness. The world of Kitaria is full of resources for you to use to your advantage. Slay monsters for ingredients, plant seeds and tend to your crops for provisions and gather materials and ores to craft more powerful weapons, armour and accessories.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/Farming.gif?t=1745483002" /><br><br>Kitaria Fables is full of friendly (and not so friendly!) citizens. Make yourself known to your neighbours and fulfil their requests. The more you bond with your new friends, the more rewards you will receive as your relationships grow!<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/tmp_1615452869575.jpg?t=1745483002" /><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1356280/extras/combat-montage-re-size.gif?t=1745483002" /><br>Kitaria Fables features a local co-op mode with Steam remote-play supported. Team up with a friend, double your firepower and use the freedom of Kitaria Fables' flexible combat system to compliment each other's strengths. <br><br>As ever, we are always appreciative of your support. If you like the look of our new project then do please join us in the community forums and hit Wishlist, to stay up to date with future news and development updates.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

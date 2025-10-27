@@ -25,26 +25,23 @@ html {
   margin: 0;                                          /* no margins */
   background-color: black;                            /* black background */
   vertical-align: middle;                             /* align vertical middle */
-}
-
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
+  height: 48px;
 }
 
 .title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
-
+  width: 100%;                                      /* title container width 100% */
+  grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+  grid-row: 1;                                      /* row 1 */
+  height: 48px;
 }
 .cards {                                              /* empty not used here */
 }
 
 .card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
+  display: grid;                                    /* container which is the grid */
+  grid-template-columns: min-content;               /* size columns to minimum content */
+  grid-template-rows: min-content min-content;      /* size rows to minimum content */
+  height: 100vh;                                    /* 100% viewport height */
 }
 
 .detailstitle{
@@ -68,9 +65,9 @@ html {
  
 .detailstitle h3,
 .descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
+  border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+  padding: 5px;                                      /* add some padding */
+  color: #ccc;                                       /* text color of the titles */
 }
 
 .detailstable th, td {
@@ -88,10 +85,6 @@ html {
   padding: 5px;                                        /* add some padding */
 }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
-
 .descriptiontitle {
 	grid-column: 2;                                    /* column 2 of grid */
 	grid-row: 2;                                       /* row 2 of grid */
@@ -101,17 +94,17 @@ html {
 
 
 .description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
+  color: #ccc;                                       /* text color */
+  grid-column: 2;                                    /* 2nd column of grid */
+  grid-row: 3;                                       /* 3rd row of grid */
+  overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+  overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+  padding-left: 10px;                                /* some padding left */
+  padding-right: 10px;                               /* some padding right */
 }
 
 .description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+  max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
 }
 
 .MenuButton {
@@ -175,11 +168,11 @@ a:active {
 
 		</style>
 	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('1945120a-7626-45f3-b61f-dc99f18543ce/f5b910af-9c52-40b8-8cb3-640a72f1eee3.png');">
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
 		<div class="cards">
 			<div class="card">
 				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="1945120a-7626-45f3-b61f-dc99f18543ce/9aeac244-ef3e-4112-95e5-5e6105410f4d.png"/> The Looker</h2>
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> The Looker</h2>
 				</div>
 				<div class="detailstitle">
 				<H3>Details</H3>
@@ -188,11 +181,7 @@ a:active {
 					<div style="overflow: auto;">
 						<TABLE class="detailstable">
 							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="1945120a-7626-45f3-b61f-dc99f18543ce/fe6d728a-09ea-4638-b852-18fa9850be2d.png"/></TD>
-							</TR>
-							<TR>
+							<col style="width:50%" />							<TR>
 								<TD>Playtime</TD>
 								<TD>Not Played</TD>
 							</TR>
@@ -277,10 +266,5 @@ The Looker is a single-player game that respects you as an intelligent player, a
 				</div>
 			</div>
 		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+	</body>
 </html>

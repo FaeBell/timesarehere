@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Islet Online</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('3c1751f2-00be-4090-b3ea-eb8b0ce26e3e/808c9d92-82bf-471e-86a7-d170e008ff91.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="3c1751f2-00be-4090-b3ea-eb8b0ce26e3e/c1cd9dba-8b58-447c-b3f3-3bd403265d06.ico"/> Islet Online</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="3c1751f2-00be-4090-b3ea-eb8b0ce26e3e/e606ef69-4e28-4aa5-ad83-684f74d57dd8.png"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-6/06/2025">6/06/2025</a> 20:17:14</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-7/06/2025">7/06/2025</a> 18:52:18</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="#quicklink-MMO">MMO</a><br/><a href="#quicklink-Multi-Player">Multi-Player</a><br/><a href="#quicklink-Single-Player">Single-Player</a><br/><a href="#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/428180" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/428180/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/428180/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=428180" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/428180" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=428180" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Anime">Anime</a><br/><a href="#quicklink-Building">Building</a><br/><a href="#quicklink-Crafting">Crafting</a><br/><a href="#quicklink-Cute">Cute</a><br/><a href="#quicklink-Early Access">Early Access</a><br/><a href="#quicklink-Family Friendly">Family Friendly</a><br/><a href="#quicklink-Fishing">Fishing</a><br/><a href="#quicklink-Flight">Flight</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-LEGO">LEGO</a><br/><a href="#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="#quicklink-Mining">Mining</a><br/><a href="#quicklink-MMORPG">MMORPG</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Nature">Nature</a><br/><a href="#quicklink-Open World">Open World</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-Sandbox">Sandbox</a><br/><a href="#quicklink-Survival">Survival</a><br/><a href="#quicklink-Voxel">Voxel</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Welcome to Islet Online.<br>Islet Online is a sandbox-style MMORPG. <br>It is all about digging and placing bricks to build your own land. <br>And with various materials from wildlife, bricks can be combined to make useful items, too.<br><br>Whenever you act, your character gets experience. <br>When your character gets experience, your character’s mastery skill level goes up. <br>With enough skill level, you will be able to accomplish extraordinary results.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/428180/extras/IsletClient_release_x64__2020-07-28_21-25-30-968.avi_000002084.gif?t=1702560965" /><br><br>Don’t feel for playing together? No worries, we also support single-player play, along with multiplayer option, with support of dedicated server!<br><br>As a player of Islet, the whole world is up to you. <br>Do whatever you want. But, be careful. <br>There may be some consequences you did not expect before.<h2 class="bb_tag">Game System</h2><br><strong><u>The Ecosystem</u></strong><br><br>In Islet Online, there is an ecosystem. Animals and plants interact with others. <br>For example, wolves hunt rabbits for their life, rabbits eat grass to reproduce.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/428180/extras/3.jpg?t=1702560965" /><br><br>Ecosystem of Islet can be affected by your character’s acts. <br>If you hunt too many rabbits and pigs, wolves may starve to death, due to lack of food. <br>Then you decide to kill every wolf on your sight, an army of herbivore will lay your world waste in ruin, left nothing but a wasteland. Basically, you will reap what you sow. <br>Your small action may cause horrific climate change, sudden blight break out from nowhere. <br>Who couldn’t adapt to the rapidly changing world, will die<br><br>Also, there’s a way to restore Islet’s ecosystem. <br>The answer lies in the world. <br>Look through carefully. Animals, plants, NPC will hint you.<br><br><strong><u>Animals &amp; NPCs</u></strong><br><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/428180/extras/2.jpg?t=1702560965" /><br><br>Animals and NPCs, even plants, dwellers in Islet have their own basic desires. <br>They have a desire to sleep, eat, and have a family.<br><br>When they feel threatened, they will flee. When they feel hunger, they will eat what they want. If desires can’t be solved, a grim fate awaits them – insufficient sleep causes sickness, hunger causes agony of starvation.<br><br>NPCs have their own lifetime. When they grow up, they will find their partner to make a family, give birth to a baby. They may perish as the time goes. Sometimes, their kid resembles his/her parents. <br><br>You can find seeds to grow plants, tame wild animals to make a farm. With enough time and love, you can even give a name to your special animal.<br><br>There is a chance some strangers come and live to the place where you put furniture. You may help them in and out. Then, more people will come to your residence. With enough population, you can be a mayor of the town.<br><br>Remember, they will not be nice if you not want to do so.<br><br><strong><u>Crafting</u></strong><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/428180/extras/4.jpg?t=1702560965" /><br><br>You can craft various items via all kinds of materials gathered from the world. <br>There are some basic recipes given, but always be creative! Through disassemble and experiment, you can find undiscovered secret recipes.<br><br><strong><u>Level Up</u></strong><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/428180/extras/1.jpg?t=1702560965" /><br><br>In Islet Online, there are a hundred of skills, which can be categorized in ten groups.<br>Whenever you act, your character gets experience to raise your mastery skill. Let’s say if you mining bricks, your mining skill will level up. Eventually, your character will be a professional miner. If you jump often, then your jumping skill goes up, then he/she will be able to jump 4 times in the air!<br><br>Do whatever you want. Your wish may come true.<br><br>Thank you.<br><br>We support multi-language chat, but we do not yet support other languages in the UI. <br><br>Homepage : <br>EMail : <a href="mailto:contact@morenori.com">contact@morenori.com</a>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

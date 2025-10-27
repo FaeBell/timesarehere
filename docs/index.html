@@ -2,11 +2,14 @@
 <html>
   <head>
     <title>Category</title>
-    <link rel="manifest" href="manifest.webmanifest">
+	<link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/tabulator.min.css" rel="stylesheet">
+	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js" integrity="sha512-PEsccDx9jqX6Dh4wZDCnWMaIO3gAaU0j46W//sSqQhUQxky6/eHZyeB3NrXD2xsyugAKd4KPiDANkcuoEa2JuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="manifest" href="manifest.webmanifest">
 	<meta name="viewport" content="width=device-width, initial-scale=0.5">
 	<style>
 h2:after,
-.cards .card figcaption,
 .cards .card:after {
   position: absolute;
 }
@@ -18,10 +21,6 @@ h2 strong,
   position: relative;
 }
 
-.cards {
-  display: flex;
-}
-
 h2,
 h2 strong,
 h2 span {
@@ -31,6 +30,8 @@ h2 span {
 body {
   background: #24282f;
   font-family: 'Arial';
+  color: #ccc;
+  font-size: 16px
 }
 
 .wrapper {
@@ -42,6 +43,7 @@ h2 {
   padding-left: 25px;
   color: #ccc;
   margin: 0;
+  cursor:pointer;
 }
 
 h2 strong {
@@ -67,63 +69,6 @@ h2:after {
   background: #373d47;
 }
 
-.cards {
-  flex-flow: row wrap;
-}
-
-.cards .card {
-  margin: 20px;
-  width: 180px;
-  height: 270px;
-  overflow: hidden;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.8);
-  transform-origin: center top;
-  transform-style: preserve-3d;
-  transform: translateZ(0);
-  transition: 0.3s;
-}
-
-.cards .card img {
-  width: 100%;
-  min-height: 100%;
-}
-
-.cards .card figcaption {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 4px;
-  font-size: 16px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #DDD;
-  transition: 0.3s;
-}
-
-#h2jscript {
-  cursor:pointer;
-}
-
-.cards .card:hover,
-.cards .card:focus,
-.cards .card:active {
-  box-shadow: 0 8px 16px 3px rgba(0,0,0,0.6);
-  transform: translateY(-3px) scale(1.05) rotateX(15deg);
-}
-
-.cards .card:hover figcaption,
-.cards .card:focus figcaption,
-.cards .card:active figcaption {
-  transform: none;
-}
-
-.cards .card:hover:after,
-.cards .card:focus:after,
-.cards .card:active:after {
-  transform: rotate(25deg);
-  top: -40%;
-  opacity: 0.15;
-}
-
 .quicklinks {
   display: flex;
   flex-flow: row wrap;
@@ -135,13 +80,18 @@ h2:after {
   margin: 10px;
 }
 
+/* link no underline */
+a {
+  text-decoration: none;
+}
+
 /* unvisited link */
 a:link {
-  color: #ccc;
+  color: #CCC;
 }
 /* visited link */
 a:visited {
-  color: #ccc;
+  color: #CCC;
 }
 /* mouse over link */
 a:hover {
@@ -149,49 +99,12 @@ a:hover {
 }
 /* selected link */
 a:active {
-  color: #ccc;
-}
-
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
-
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
+  color: #CCC;
 }
 
 .Menu {
   display: flex;
   flex-flow: row wrap;
-}
-
-#BackTopButton {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: red; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 20px; /* Increase font size */
 }
 
 .MenuButton {
@@ -215,422 +128,241 @@ a:active {
   background-color: #666; /* Add a dark-grey background on hover */
   color: #eee; /* Text color */
 }
-
-#BackTopButton:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+	                                                   /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
 }
 
-input{
-  display: block;
-  background: #fff;
-  padding: .6rem;
-  border-radius: 0.3rem;
-  width: 300px;
-  border: 0.1rem solid #BDBDBD;
-  outline: none;
-  height: 1rem;
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
 }
 
-input:hover{
-	border: 0.1rem solid #0F52BA !important;
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
 }
 
-#searchbutton{
-  display: block;
-  background: #fff;
-  padding: .6rem;
-  border-radius: 0.3rem;
-  width: 175px;
-  border: 0.1rem solid #BDBDBD;
-  outline: none;
-  height: 2rem;
+#gamestable {
+  width: 100%;
 }
 
-#searchbutton:hover{
-	border: 0.1rem solid #0F52BA !important;
+.filter-controls {
+	margin-bottom: 7px;
 }
-    </style>
-   <script>
-	function search() {
-		var input, filter, games, game, cards, card, i, j, txtValue, wrapper, quicklinks, quicklink, quicklinkid, needhide, numvisible, quicklinklinks;
-		input = document.getElementById("search");
-		filter = input.value.toUpperCase();
-
-		wrapper = document.getElementById("wrapper");
-		parentElement = wrapper.parentElement;
-		fragment = document.createDocumentFragment();
-		fragment.appendChild(wrapper.cloneNode(true));
-		wrapper.remove();
-		games = fragment.childNodes[0].getElementsByTagName("figcaption");
-		i = games.length - 1;
-		while (i >= 0) {
-			game = games[i];
-			txtValue = game.innerText;
-			if (txtValue.toUpperCase().indexOf(filter) > -1) {
-				game.parentElement.parentElement.style.display = "";
-			} else {
-				game.parentElement.parentElement.style.display = "none";
-			}
-			i--;
-		}
-		
-		quicklinks = fragment.childNodes[0].querySelectorAll("div[id^='quicklink-']")
-		i = quicklinks.length - 1;
-		while (i >= 0) {
-			quicklink = quicklinks[i];
-			quicklinkid = quicklink.id;
-			cards = fragment.getElementById(quicklinkid.replace("quicklink-", ""));
-			needhide = true;
-			if(cards)
-			{
-			
-				j = cards.children.length -1
-				numvisible = 0;
-				while (j >= 0)
-				{
-					if (cards.children[j].style.display == "")
-					{
-						needhide = false;
-						numvisible++;
-					}
-					j--;
-				}
-				
-				quicklinklinks = fragment.childNodes[0].querySelectorAll("a[href=\"#" + quicklinkid.replace(/["\\]/g, '\\$&') + "\"]")
-				if (needhide)
-				{
-					quicklink.style.display = "none";
-					cards.style.display = "none";
-					if (quicklinklinks.length == 1)
-					{
-						quicklink.children[0].children[0].innerHTML = "&#x25BA;";
-						quicklink.children[0].children[0].style.color = "#790000";
-						quicklink.children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )"
-						quicklinklinks[0].style.display = "none";
-					}
-				} else {
-					quicklink.style.display = "";					
-					cards.style.display = "";
-					if (quicklinklinks.length == 1)
-					{
-						quicklink.children[0].children[0].innerHTML = "&#x25BC;";
-						quicklink.children[0].children[0].style.color = "#007962";
-						quicklink.children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )";
-						quicklinklinks[0].style.display = "";
-					}
-				}
-			}
-			i--;
-		}
-		
-		parentElement.appendChild(fragment.childNodes[0]);
-		
-		//have to renable this
-		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-		observer.observe();
-		
-		// Get the input field
-		var input = document.getElementById("search");
-
-		// Execute a function when the user releases a key on the keyboard
-		input.addEventListener("keyup", function(event) {
-		  // Number 13 is the "Enter" key on the keyboard
-		  if (event.keyCode === 13) {
-			// Cancel the default action, if needed
-			event.preventDefault();
-			// Trigger the button element with a click
-			document.getElementById("searchbutton").click();
-		  }
-		});
-	}
-  </script>
+  </style>
   </head>
   <body>
-    <button onclick="topFunction()" id="BackTopButton" title="Go to top">Top</button>
     <div class="wrapper" id="wrapper">
       <h2><strong>MAIN MENU - Category<span>(Category ascending / Source ascending)</span></strong></h2>
-      <div class="Menu"><a Class="MenuButton" href="index.html">Category ▲</A></div>
-      <h2><strong>Search</strong></h2><input type="text" id="search" placeholder="Type in a game name to search"><br/><button onclick="search()" id="searchbutton">Search</button>
-      <h2><strong>Quick Links</strong></h2>
-	  <div class="quicklinks"><a class="quicklink" href="#quicklink-2+ Player">2+ Player</A><a class="quicklink" href="#quicklink-5+ Player">5+ Player</A><a class="quicklink" href="#quicklink-8 Player">8 Player</A><a class="quicklink" href="#quicklink-9+ Player">9+ Player</A></div>
-      <div id="quicklink-2+ Player"><h2 id="h2jscript" onclick="ShowHide('2+ Player')"><strong id="eye-2+ Player" style="color: #007962;">&#x25BC;</strong><strong>2+ Player<span>( 2 )</span></strong></h2></div>
-<div id="2+ Player" class="cards">
-<figure class="card">
-  <a href="4f794ea7-533b-4e66-9693-ca36b38d62b0.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Minecraft</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="079dc30e-29fc-4064-873d-3fa736a0fba1.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Roblox</figcaption>
-  </a>
-</figure>
+	  <div class="Menu"><a Class="MenuButton" href="index.html">Category ▲</A></div>
+	  <h2></h2>
+	  <div class="filter-controls">
+		<span>
+			<B>Category starts with:</B>
+		    <select id="filter-quickfield" onchange="applyQuickField();"><option></option><option value="2+ Player">2+ Player (2)</option><option value="5+ Player">5+ Player (4)</option><option value="8 Player">8 Player (15)</option><option value="9+ Player">9+ Player (13)</option></select>
+		</span>
+	  </div>
+	  <div class="filter-controls">
+		<span>
+		  <B>Field </B>
+		  <select id="filter-field">
+			<option></option>
+			<option value="name">Name</option>
+			<option value="data">Category</option>
+			<option value="lastactivity">Last Activity</option>
+			<option value="addeddate">Added</option>
+			<option value="playtime">Playtime</option>
+			<option value="source">Source</option>
+			<option value="platform">Platform</option>
+		  </select>
+		</span>
 
-</div><div id="quicklink-5+ Player"><h2 id="h2jscript" onclick="ShowHide('5+ Player')"><strong id="eye-5+ Player" style="color: #007962;">&#x25BC;</strong><strong>5+ Player<span>( 4 )</span></strong></h2></div>
-<div id="5+ Player" class="cards">
-<figure class="card">
-  <a href="4f794ea7-533b-4e66-9693-ca36b38d62b0.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Minecraft</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="079dc30e-29fc-4064-873d-3fa736a0fba1.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Roblox</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="6fe0c5f2-0e17-4cdd-959b-d0626daafcb4.html">
-  <img class="lozad" data-src="6fe0c5f2-0e17-4cdd-959b-d0626daafcb4/9d1ce9d2-ace1-4b12-96ff-87e700f1a1fe.png"/>
-  <figcaption>Super Smash Bros Ultimate</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="dfb6bba1-2f79-4e28-a7eb-01bc561fd10b.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Party Golf</figcaption>
-  </a>
-</figure>
+		<span><B>contains </B><input id="filter-value" type="text" placeholder="value to filter"></span>
 
-</div><div id="quicklink-8 Player"><h2 id="h2jscript" onclick="ShowHide('8 Player')"><strong id="eye-8 Player" style="color: #007962;">&#x25BC;</strong><strong>8 Player<span>( 15 )</span></strong></h2></div>
-<div id="8 Player" class="cards">
-<figure class="card">
-  <a href="5fc6e5e2-858a-4e9b-b470-ac1dfc55e00f.html">
-  <img class="lozad" data-src="5fc6e5e2-858a-4e9b-b470-ac1dfc55e00f/78138160-90ac-482c-98e9-02d4fa80e48f.png"/>
-  <figcaption>Prison Architect</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="2ca8176d-1659-4b1e-93bd-5790007cb25e.html">
-  <img class="lozad" data-src="2ca8176d-1659-4b1e-93bd-5790007cb25e/0584261d-b995-47a9-a66c-d48a0f22317b.jpg"/>
-  <figcaption>Grand Theft Auto V</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="3672bd4f-363f-46ab-84dd-ae46471c8ffb.html">
-  <img class="lozad" data-src="3672bd4f-363f-46ab-84dd-ae46471c8ffb/14ccf887-8c30-4e49-95f8-a4cf94ee412d.png"/>
-  <figcaption>The Lord of The Rings: Return to Moria</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="147cc2b0-706a-464c-a367-c53901c4caa8.html">
-  <img class="lozad" data-src="147cc2b0-706a-464c-a367-c53901c4caa8/7add48ab-2ba8-4bc4-bbb0-f1faf5300f89.png"/>
-  <figcaption>theHunter: Call of the Wild</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="6fe0c5f2-0e17-4cdd-959b-d0626daafcb4.html">
-  <img class="lozad" data-src="6fe0c5f2-0e17-4cdd-959b-d0626daafcb4/9d1ce9d2-ace1-4b12-96ff-87e700f1a1fe.png"/>
-  <figcaption>Super Smash Bros Ultimate</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="046796c0-f9ec-4cac-a54a-93547cc44f3c.html">
-  <img class="lozad" data-src="046796c0-f9ec-4cac-a54a-93547cc44f3c/0191ae95-6a4b-469c-bd12-3323df8e1c55.png"/>
-  <figcaption>Sky: Children of the Light</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="dfb6bba1-2f79-4e28-a7eb-01bc561fd10b.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Party Golf</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="b68abb09-772c-4b6f-972e-e4b98b4b2eb0.html">
-  <img class="lozad" data-src="b68abb09-772c-4b6f-972e-e4b98b4b2eb0/ec56d1d3-a482-4522-a53f-1ebfecff7b62.png"/>
-  <figcaption>Starbound</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="e30f74b6-943f-4b18-ab7d-3c6e0df8ad44.html">
-  <img class="lozad" data-src="e30f74b6-943f-4b18-ab7d-3c6e0df8ad44/bf2d2e9d-05b8-4431-8bc3-92d2716d92aa.png"/>
-  <figcaption>Terraria</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="98fa4c9b-bce6-4a1e-9d44-eee708d4e33c.html">
-  <img class="lozad" data-src="98fa4c9b-bce6-4a1e-9d44-eee708d4e33c/20115463-eaf1-4bbf-b348-27db5a05228a.jpg"/>
-  <figcaption>The Wild Eight</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="74db6dfb-6da0-4ee4-83a3-555cf40ef3d0.html">
-  <img class="lozad" data-src="74db6dfb-6da0-4ee4-83a3-555cf40ef3d0/aae049d6-c9d7-4740-a129-ea26a015c543.png"/>
-  <figcaption>The Forest</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="ec391b20-1e4a-490c-b52e-9ae1e62f4338.html">
-  <img class="lozad" data-src="ec391b20-1e4a-490c-b52e-9ae1e62f4338/06164ce6-5c43-4879-aa2f-e395dff2508d.png"/>
-  <figcaption>PICO PARK 2</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="4d498745-7402-4fec-b93b-ee6239c95a8b.html">
-  <img class="lozad" data-src="4d498745-7402-4fec-b93b-ee6239c95a8b/c9b78980-dfe6-402e-86a7-edf400dabe7d.png"/>
-  <figcaption>Brawlhalla</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="ab2a0983-58b2-430f-b08f-9b3091e6a3e7.html">
-  <img class="lozad" data-src="ab2a0983-58b2-430f-b08f-9b3091e6a3e7/b05715bb-e0ba-4e39-bebb-0557e9eec0d9.png"/>
-  <figcaption>Human Fall Flat</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="bde9a73f-7702-4ae4-ab85-eb3f7c75ed5a.html">
-  <img class="lozad" data-src="bde9a73f-7702-4ae4-ab85-eb3f7c75ed5a/486bce10-a739-48f1-a26f-999fe29af5e9.png"/>
-  <figcaption>The Jackbox Party Pack 3</figcaption>
-  </a>
-</figure>
-
-</div><div id="quicklink-9+ Player"><h2 id="h2jscript" onclick="ShowHide('9+ Player')"><strong id="eye-9+ Player" style="color: #007962;">&#x25BC;</strong><strong>9+ Player<span>( 13 )</span></strong></h2></div>
-<div id="9+ Player" class="cards">
-<figure class="card">
-  <a href="4e1ea54b-d0bc-4380-a91f-28495b5fef80.html">
-  <img class="lozad" data-src="4e1ea54b-d0bc-4380-a91f-28495b5fef80/fc7de896-b6a6-47e8-9ab8-06a184f77491.jpg"/>
-  <figcaption>Runbow</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="25c789cc-5216-4b1a-8c4e-7174dd556204.html">
-  <img class="lozad" data-src="25c789cc-5216-4b1a-8c4e-7174dd556204/d0dadbf0-5008-4819-b4f7-9014ff6f6472.png"/>
-  <figcaption>Empyrion - Galactic Survival</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="8b10b1f8-a898-499b-9522-607bf4c5bdb5.html">
-  <img class="lozad" data-src="8b10b1f8-a898-499b-9522-607bf4c5bdb5/8be1ccc9-61a8-4a40-8b19-8772f6fcb3ee.png"/>
-  <figcaption>Europa Universalis IV</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="cfcc8b71-6a76-4c78-bd60-645e6793ffbd.html">
-  <img class="lozad" data-src="cfcc8b71-6a76-4c78-bd60-645e6793ffbd/ab2cb5dd-2b3e-494b-a879-e2d96fc3c298.png"/>
-  <figcaption>Farming Simulator 19</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="c47a1d92-5d48-4e94-90cc-4e7ac0771b75.html">
-  <img class="lozad" data-src="c47a1d92-5d48-4e94-90cc-4e7ac0771b75/0fba51f0-2098-46f3-8f4b-e2d49d17bb9b.png"/>
-  <figcaption>Farming Simulator 22</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="107354ab-9782-4bcb-8c10-7c89480a38ad.html">
-  <img class="lozad" data-src="107354ab-9782-4bcb-8c10-7c89480a38ad/d9219af2-8819-430f-b482-4b0467df6fae.jpg"/>
-  <figcaption>OpenTTD</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="4f794ea7-533b-4e66-9693-ca36b38d62b0.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Minecraft</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="079dc30e-29fc-4064-873d-3fa736a0fba1.html">
-  <img class="lozad" data-src=""/>
-  <figcaption>Roblox</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="8111635d-7adb-40b4-8b05-65ec459d63ba.html">
-  <img class="lozad" data-src="8111635d-7adb-40b4-8b05-65ec459d63ba/858bde45-7271-40f2-bc62-39df4a1e14cc.png"/>
-  <figcaption>Unfortunate Spacemen</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="b4ede3c7-5874-49ed-9506-fd346eb8d2ef.html">
-  <img class="lozad" data-src="b4ede3c7-5874-49ed-9506-fd346eb8d2ef/9cd570d4-d29a-4b2b-b00d-61214610af81.png"/>
-  <figcaption>Palia</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="bd370e61-26f5-4ec0-b2eb-7e239ab9563c.html">
-  <img class="lozad" data-src="bd370e61-26f5-4ec0-b2eb-7e239ab9563c/7e4c18c6-22fd-4647-a647-7aa0e7bff55c.png"/>
-  <figcaption>Guild Wars 2</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="477d4efa-be79-4e71-9409-f95078b92137.html">
-  <img class="lozad" data-src="477d4efa-be79-4e71-9409-f95078b92137/45e4de21-d247-4276-be79-0383ed0133c7.png"/>
-  <figcaption>Viscera Cleanup Detail: Santa&#39;s Rampage</figcaption>
-  </a>
-</figure>
-<figure class="card">
-  <a href="04cfe9db-2838-43fc-a397-74d4e68f7654.html">
-  <img class="lozad" data-src="04cfe9db-2838-43fc-a397-74d4e68f7654/dd40fa35-0ece-46de-8561-74103f9351a0.png"/>
-  <figcaption>Viscera Cleanup Detail: Shadow Warrior</figcaption>
-  </a>
-</figure>
-
-</div>
+		<button id="filter-clear">Clear filter</button>
+	  </div>
+	  <div id="gamestable"></div>
     </div>
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-  <script>
-    const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-    observer.observe();
-    
-	// Get the input field
-	var input = document.getElementById("search");
-
-	// Execute a function when the user releases a key on the keyboard
-	input.addEventListener("keyup", function(event) {
-	  // Number 13 is the "Enter" key on the keyboard
-	  if (event.keyCode === 13) {
-		// Cancel the default action, if needed
-		event.preventDefault();
-		// Trigger the button element with a click
-		document.getElementById("searchbutton").click();
-	  }
-	});
 	
-    //Get the button:
-    mybutton = document.getElementById("BackTopButton");
+	<script>
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
+	var tabledata = [		
+ 	{coverimage:"", icon:"", id:1, name:"Minecraft", data:"2+ Player", categoryregion: "2+ Player / ", lastactivity:"Never", addeddate:"8/06/2025", playtime:"Not Played", source:"Itch.io", platform:"Macintosh, PC (Windows)", gamefile:"4f794ea7-533b-4e66-9693-ca36b38d62b0.html"},{coverimage:"", icon:"", id:2, name:"Roblox", data:"2+ Player", categoryregion: "2+ Player / ", lastactivity:"Never", addeddate:"8/06/2025", playtime:"Not Played", source:"Itch.io", platform:"Macintosh, PC (Windows)", gamefile:"079dc30e-29fc-4064-873d-3fa736a0fba1.html"},{coverimage:"", icon:"", id:3, name:"Minecraft", data:"5+ Player", categoryregion: "5+ Player / ", lastactivity:"Never", addeddate:"8/06/2025", playtime:"Not Played", source:"Itch.io", platform:"Macintosh, PC (Windows)", gamefile:"4f794ea7-533b-4e66-9693-ca36b38d62b0.html"},{coverimage:"", icon:"", id:4, name:"Roblox", data:"5+ Player", categoryregion: "5+ Player / ", lastactivity:"Never", addeddate:"8/06/2025", playtime:"Not Played", source:"Itch.io", platform:"Macintosh, PC (Windows)", gamefile:"079dc30e-29fc-4064-873d-3fa736a0fba1.html"},{coverimage:"6fe0c5f2-0e17-4cdd-959b-d0626daafcb4/9d1ce9d2-ace1-4b12-96ff-87e700f1a1fe.png", icon:"6fe0c5f2-0e17-4cdd-959b-d0626daafcb4/5d02a4b0-c3f4-46b3-baa4-769891adf76e.png", id:5, name:"Super Smash Bros Ultimate", data:"5+ Player", categoryregion: "5+ Player / TV|Phone|Card|Board|In-Person Games", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Nintendo", platform:"Nintendo Switch", gamefile:"6fe0c5f2-0e17-4cdd-959b-d0626daafcb4.html"},{coverimage:"", icon:"", id:6, name:"Party Golf", data:"5+ Player", categoryregion: "5+ Player / ", lastactivity:"Never", addeddate:"13/06/2025", playtime:"Not Played", source:"PS4", platform:"", gamefile:"dfb6bba1-2f79-4e28-a7eb-01bc561fd10b.html"},{coverimage:"5fc6e5e2-858a-4e9b-b470-ac1dfc55e00f/78138160-90ac-482c-98e9-02d4fa80e48f.png", icon:"5fc6e5e2-858a-4e9b-b470-ac1dfc55e00f/78148973-9318-49ed-b4b1-d0fd36b67a18.ico", id:7, name:"Prison Architect", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"1h 40m 27s", source:"Epic", platform:"PC (Windows)", gamefile:"5fc6e5e2-858a-4e9b-b470-ac1dfc55e00f.html"},{coverimage:"2ca8176d-1659-4b1e-93bd-5790007cb25e/0584261d-b995-47a9-a66c-d48a0f22317b.jpg", icon:"2ca8176d-1659-4b1e-93bd-5790007cb25e/187f7257-28c7-4594-8e43-19ddd98e2e23.ico", id:8, name:"Grand Theft Auto V", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"2ca8176d-1659-4b1e-93bd-5790007cb25e.html"},{coverimage:"3672bd4f-363f-46ab-84dd-ae46471c8ffb/14ccf887-8c30-4e49-95f8-a4cf94ee412d.png", icon:"3672bd4f-363f-46ab-84dd-ae46471c8ffb/ee406e70-0063-4c63-a6ed-376bba3a27ca.png", id:9, name:"The Lord of The Rings: Return to Moria", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"3672bd4f-363f-46ab-84dd-ae46471c8ffb.html"},{coverimage:"147cc2b0-706a-464c-a367-c53901c4caa8/7add48ab-2ba8-4bc4-bbb0-f1faf5300f89.png", icon:"147cc2b0-706a-464c-a367-c53901c4caa8/8b20b158-e1e1-46e6-9165-af41147f3d26.ico", id:10, name:"theHunter: Call of the Wild", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"147cc2b0-706a-464c-a367-c53901c4caa8.html"},{coverimage:"6fe0c5f2-0e17-4cdd-959b-d0626daafcb4/9d1ce9d2-ace1-4b12-96ff-87e700f1a1fe.png", icon:"6fe0c5f2-0e17-4cdd-959b-d0626daafcb4/5d02a4b0-c3f4-46b3-baa4-769891adf76e.png", id:11, name:"Super Smash Bros Ultimate", data:"8 Player", categoryregion: "8 Player / TV|Phone|Card|Board|In-Person Games", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Nintendo", platform:"Nintendo Switch", gamefile:"6fe0c5f2-0e17-4cdd-959b-d0626daafcb4.html"},{coverimage:"046796c0-f9ec-4cac-a54a-93547cc44f3c/0191ae95-6a4b-469c-bd12-3323df8e1c55.png", icon:"046796c0-f9ec-4cac-a54a-93547cc44f3c/53f1d45d-4659-49cc-a0dd-73a67d170b05.ico", id:12, name:"Sky: Children of the Light", data:"8 Player", categoryregion: "8 Player / TV|Phone|Card|Board|In-Person Games", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Nintendo", platform:"Nintendo Switch", gamefile:"046796c0-f9ec-4cac-a54a-93547cc44f3c.html"},{coverimage:"", icon:"", id:13, name:"Party Golf", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"13/06/2025", playtime:"Not Played", source:"PS4", platform:"", gamefile:"dfb6bba1-2f79-4e28-a7eb-01bc561fd10b.html"},{coverimage:"b68abb09-772c-4b6f-972e-e4b98b4b2eb0/ec56d1d3-a482-4522-a53f-1ebfecff7b62.png", icon:"b68abb09-772c-4b6f-972e-e4b98b4b2eb0/556e21b5-5440-4549-a9f5-c812cc903f14.ico", id:14, name:"Starbound", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"b68abb09-772c-4b6f-972e-e4b98b4b2eb0.html"},{coverimage:"e30f74b6-943f-4b18-ab7d-3c6e0df8ad44/bf2d2e9d-05b8-4431-8bc3-92d2716d92aa.png", icon:"e30f74b6-943f-4b18-ab7d-3c6e0df8ad44/d4e1015d-bee0-46ce-9677-858c2dbfec69.png", id:15, name:"Terraria", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"e30f74b6-943f-4b18-ab7d-3c6e0df8ad44.html"},{coverimage:"98fa4c9b-bce6-4a1e-9d44-eee708d4e33c/20115463-eaf1-4bbf-b348-27db5a05228a.jpg", icon:"98fa4c9b-bce6-4a1e-9d44-eee708d4e33c/fbc56586-88a1-44f3-9865-3e98a052c115.ico", id:16, name:"The Wild Eight", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"98fa4c9b-bce6-4a1e-9d44-eee708d4e33c.html"},{coverimage:"74db6dfb-6da0-4ee4-83a3-555cf40ef3d0/aae049d6-c9d7-4740-a129-ea26a015c543.png", icon:"74db6dfb-6da0-4ee4-83a3-555cf40ef3d0/33751e3e-e402-406e-ac41-991e32ad6ed2.ico", id:17, name:"The Forest", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"74db6dfb-6da0-4ee4-83a3-555cf40ef3d0.html"},{coverimage:"ec391b20-1e4a-490c-b52e-9ae1e62f4338/06164ce6-5c43-4879-aa2f-e395dff2508d.png", icon:"ec391b20-1e4a-490c-b52e-9ae1e62f4338/315d252d-60b1-44ff-b29c-2f3248ca49e2.png", id:18, name:"PICO PARK 2", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"ec391b20-1e4a-490c-b52e-9ae1e62f4338.html"},{coverimage:"4d498745-7402-4fec-b93b-ee6239c95a8b/c9b78980-dfe6-402e-86a7-edf400dabe7d.png", icon:"4d498745-7402-4fec-b93b-ee6239c95a8b/9f1d7e67-f7f4-4618-bad0-52e636849926.png", id:19, name:"Brawlhalla", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"More Than a Year ago", addeddate:"5/06/2025", playtime:"54m 0s", source:"Steam", platform:"Macintosh, PC (Windows)", gamefile:"4d498745-7402-4fec-b93b-ee6239c95a8b.html"},{coverimage:"ab2a0983-58b2-430f-b08f-9b3091e6a3e7/b05715bb-e0ba-4e39-bebb-0557e9eec0d9.png", icon:"ab2a0983-58b2-430f-b08f-9b3091e6a3e7/04a034b0-c9c7-4247-898b-4d8f811077af.png", id:20, name:"Human Fall Flat", data:"8 Player", categoryregion: "8 Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"ab2a0983-58b2-430f-b08f-9b3091e6a3e7.html"},{coverimage:"bde9a73f-7702-4ae4-ab85-eb3f7c75ed5a/486bce10-a739-48f1-a26f-999fe29af5e9.png", icon:"bde9a73f-7702-4ae4-ab85-eb3f7c75ed5a/0870ec69-f280-4bd9-8d26-6dc308d84f62.png", id:21, name:"The Jackbox Party Pack 3", data:"8 Player", categoryregion: "8 Player / TV / Phone / Card / Board / Local Games", lastactivity:"Past Year", addeddate:"5/06/2025", playtime:"1d 5h 52m 0s", source:"Steam", platform:"Macintosh, PC (Windows)", gamefile:"bde9a73f-7702-4ae4-ab85-eb3f7c75ed5a.html"},{coverimage:"4e1ea54b-d0bc-4380-a91f-28495b5fef80/fc7de896-b6a6-47e8-9ab8-06a184f77491.jpg", icon:"4e1ea54b-d0bc-4380-a91f-28495b5fef80/3c7bd72a-965d-4482-bcdc-4516eb1b90b2.png", id:22, name:"Runbow", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"4e1ea54b-d0bc-4380-a91f-28495b5fef80.html"},{coverimage:"25c789cc-5216-4b1a-8c4e-7174dd556204/d0dadbf0-5008-4819-b4f7-9014ff6f6472.png", icon:"25c789cc-5216-4b1a-8c4e-7174dd556204/bb3fd8cb-1572-41da-9245-da55511cfd1c.ico", id:23, name:"Empyrion - Galactic Survival", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"25c789cc-5216-4b1a-8c4e-7174dd556204.html"},{coverimage:"8b10b1f8-a898-499b-9522-607bf4c5bdb5/8be1ccc9-61a8-4a40-8b19-8772f6fcb3ee.png", icon:"8b10b1f8-a898-499b-9522-607bf4c5bdb5/11a3d3e2-08e0-4f45-9f63-4171e328ae95.ico", id:24, name:"Europa Universalis IV", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"8b10b1f8-a898-499b-9522-607bf4c5bdb5.html"},{coverimage:"cfcc8b71-6a76-4c78-bd60-645e6793ffbd/ab2cb5dd-2b3e-494b-a879-e2d96fc3c298.png", icon:"cfcc8b71-6a76-4c78-bd60-645e6793ffbd/29ec0916-c96a-4d9e-868f-de0aba6bd903.ico", id:25, name:"Farming Simulator 19", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"cfcc8b71-6a76-4c78-bd60-645e6793ffbd.html"},{coverimage:"c47a1d92-5d48-4e94-90cc-4e7ac0771b75/0fba51f0-2098-46f3-8f4b-e2d49d17bb9b.png", icon:"c47a1d92-5d48-4e94-90cc-4e7ac0771b75/a46551ef-7635-40e7-80a2-b4cce5114dd9.png", id:26, name:"Farming Simulator 22", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Epic", platform:"PC (Windows)", gamefile:"c47a1d92-5d48-4e94-90cc-4e7ac0771b75.html"},{coverimage:"107354ab-9782-4bcb-8c10-7c89480a38ad/d9219af2-8819-430f-b482-4b0467df6fae.jpg", icon:"107354ab-9782-4bcb-8c10-7c89480a38ad/9ff3880f-5e4a-41d2-b7fe-395245af01d7.png", id:27, name:"OpenTTD", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"More Than a Year ago", addeddate:"5/06/2025", playtime:"2m 0s", source:"GOG", platform:"PC (Windows)", gamefile:"107354ab-9782-4bcb-8c10-7c89480a38ad.html"},{coverimage:"", icon:"", id:28, name:"Minecraft", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"8/06/2025", playtime:"Not Played", source:"Itch.io", platform:"Macintosh, PC (Windows)", gamefile:"4f794ea7-533b-4e66-9693-ca36b38d62b0.html"},{coverimage:"", icon:"", id:29, name:"Roblox", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"8/06/2025", playtime:"Not Played", source:"Itch.io", platform:"Macintosh, PC (Windows)", gamefile:"079dc30e-29fc-4064-873d-3fa736a0fba1.html"},{coverimage:"8111635d-7adb-40b4-8b05-65ec459d63ba/858bde45-7271-40f2-bc62-39df4a1e14cc.png", icon:"8111635d-7adb-40b4-8b05-65ec459d63ba/97ddcce4-58d8-4541-afc6-5fd72c2c7951.ico", id:30, name:"Unfortunate Spacemen", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"8111635d-7adb-40b4-8b05-65ec459d63ba.html"},{coverimage:"b4ede3c7-5874-49ed-9506-fd346eb8d2ef/9cd570d4-d29a-4b2b-b00d-61214610af81.png", icon:"b4ede3c7-5874-49ed-9506-fd346eb8d2ef/0435a5f7-6aad-45f8-a61a-212150773030.png", id:31, name:"Palia", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"b4ede3c7-5874-49ed-9506-fd346eb8d2ef.html"},{coverimage:"bd370e61-26f5-4ec0-b2eb-7e239ab9563c/7e4c18c6-22fd-4647-a647-7aa0e7bff55c.png", icon:"bd370e61-26f5-4ec0-b2eb-7e239ab9563c/c49d8ba3-b30a-49bc-8f8c-540a3c9e52a9.ico", id:32, name:"Guild Wars 2", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"bd370e61-26f5-4ec0-b2eb-7e239ab9563c.html"},{coverimage:"477d4efa-be79-4e71-9409-f95078b92137/45e4de21-d247-4276-be79-0383ed0133c7.png", icon:"477d4efa-be79-4e71-9409-f95078b92137/b00e6329-5669-48ff-b41d-9344cf155fcc.ico", id:33, name:"Viscera Cleanup Detail: Santa&#39;s Rampage", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"477d4efa-be79-4e71-9409-f95078b92137.html"},{coverimage:"04cfe9db-2838-43fc-a397-74d4e68f7654/dd40fa35-0ece-46de-8561-74103f9351a0.png", icon:"04cfe9db-2838-43fc-a397-74d4e68f7654/7b476e5d-aa0e-4726-ab85-e2cd619b2a80.ico", id:34, name:"Viscera Cleanup Detail: Shadow Warrior", data:"9+ Player", categoryregion: "9+ Player / ", lastactivity:"Never", addeddate:"5/06/2025", playtime:"Not Played", source:"Steam", platform:"PC (Windows)", gamefile:"04cfe9db-2838-43fc-a397-74d4e68f7654.html"},
+	];
 	
-	function ShowHide(body_id){
-	var elem
-
-		elem = document.getElementById(body_id);
-		elemclick = document.getElementById("eye-" + body_id);
-		
-		if(!elem) return true;
-		if(!elemclick) return true;
-
-		if (elem.style.display == "none") {
-		  elem.style.display = "";
-		  elemclick.innerHTML = "&#x25BC;";
-		  elemclick.style.color = "#007962";
+	var iconMutator  = function(value, data, type, params, column) {
+		if (value == "")
+		{
+			return value
+		} else {
+			return "<img height='32' width='32' src='" + value + "'>";
 		}
-		else {
-		  elem.style.display = "none";
-		  elemclick.innerHTML = "&#x25BA;";
-		  elemclick.style.color = "#790000";
-		}
-		return true;
 	}
+
+	var table = new Tabulator("#gamestable", {
+		data:tabledata,
+		layout:"fitColumns",
+		responsiveLayout:"hide",
+		height:"450px",
+		columns:[
+		{title:"#", formatter:"rownum", width:57, responsive:0}, //incrementing row number
+		{title:"", field:"icon", mutator:iconMutator, formatter:"html", width:41, responsive:0},
+		{title:"Name", field:"name", widthGrow:2, minWidth:115, formatter:"html", responsive:0},
+		{title:"Category", field:"data", widthGrow:1, minWidth:115, formatter:"html", responsive:0},
+		{title:"Category / Region", field:"categoryregion", widthGrow:1, minWidth:115, formatter:"html", responsive:0},
+
+		{title:"Last Activity", field:"lastactivity", widthGrow:1, minWidth:125, maxWidth:180, formatter:"html", responsive:8},
+		{title:"Added", field:"addeddate", width:95, sorter:"date", sorterParams:{format:"DD/MM/YYYY"}, formatter:"html", responsive:9}, 
+		{title:"Playtime", field:"playtime", width:125, formatter:"html", responsive:9},
+		{title:"Source", field:"source", widthGrow:1, minWidth:125, formatter:"html", responsive:7},
+		{title:"Platform", field:"platform", widthGrow:1, minWidth:135, formatter:"html", responsive:0},
+		],
+		rowDblClick:function(e, row){ 
+ 			window.location=row.getData().gamefile;
+		},
+		rowClick:function(e, row){ 
+			var rowdata = row.getData(); 
+			var tmp = document.getElementById("name");
+			tmp.innerHTML = "<a href='" + row.getData().gamefile + "'>" + rowdata.name + "</a>";
+			tmp = document.getElementById("data");
+			tmp.innerHTML = rowdata.data;
+			tmp = document.getElementById("lastactivity");
+			tmp.innerHTML = rowdata.lastactivity;
+			tmp = document.getElementById("addeddate");
+			tmp.innerHTML = rowdata.addeddate;
+			tmp = document.getElementById("playtime");
+			tmp.innerHTML = rowdata.playtime;
+			tmp = document.getElementById("source");
+			tmp.innerHTML = rowdata.source;
+			tmp = document.getElementById("platform");
+			tmp.innerHTML = rowdata.platform;
+			tmp = document.getElementById("coverimage");
+			tmp.src = rowdata.coverimage;
+			tmp = document.getElementById("coverimagelink");
+			tmp.href = row.getData().gamefile;			
+		},
+	});
+
+	function escapeRegExp(string) {
+		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+	}
+
+	function applyQuickField() {
+		var filterval = quickEl.options[quickEl.selectedIndex].value;
+		if (filterval.value == "")
+		{
+			table.clearFilter();
+		}
+		else
+		{
+			if (filterval == "None")
+			{
+				table.setFilter(dataFilter, {field:"data", compareval:filterval, exactMatch:true, noneOrEmpty:true});
+			}
+			else
+			{
+				table.setFilter(dataFilter, {field:"data", compareval:filterval, exactMatch:true, noneOrEmpty:false});
+			}
+		}
+	}
+
+	function dataFilter(data, filterParams){
+		//data - the data for the row being filtered
+		//filterParams - params object passed to the filter
+		if (filterParams.noneOrEmpty)
+		{
+			return ((he.decode(data[filterParams.field]).toLowerCase() == "") || (he.decode(data[filterParams.field]) == "None"));
+		}
+		else
+		{
+			if (filterParams.exactMatch)
+			{
+				if (filterParams.compareval == "#")
+				{
+					var firstchar = he.decode(data[filterParams.field]).toLowerCase().charAt(0);
+					return ((firstchar >= '0') && (firstchar <= '9')); 
+				}
+				else
+				{
+					//need to use indexof for the date fields as they contains times also
+					return he.decode(data[filterParams.field]).toLowerCase().indexOf(filterParams.compareval.toLowerCase()) == 0;
+				}
+			}
+			else
+			{
+				const regex = new RegExp(escapeRegExp(filterParams.compareval.toLowerCase()), 'g'); //comparevalue is text
+				return regex.test(he.decode(data[filterParams.field]).toLowerCase());
+			}
+		}
+    }
+
+	//Define variables for input elements
+	var fieldEl = document.getElementById("filter-field");
+	var valueEl = document.getElementById("filter-value");
+	var quickEl = document.getElementById("filter-quickfield"); 
+
+	//set filter if passed certain parameter
+	var url = window.location.href;
+	var hashindex = url.lastIndexOf("#quicklink-");
+	var urllen = url.length;
+
+	if (hashindex > -1)
+	{
+		var quicklinktext = "quicklink-";
+		hashindex += quicklinktext.length + 1;
+		
+		if (hashindex < urllen)
+		{
+			var filtervalue = url.substring(hashindex, urllen);
+			if (filtervalue != "")
+			{			
+				quickEl.value = decodeURI(filtervalue);	
+				applyQuickField();
+			}
+		}
+	}
+
+	//Trigger setFilter function with correct parameters
+	function updateFilter(){
+	  var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+
+	  if(filterVal){
+		table.setFilter(dataFilter, {field:filterVal, compareval:valueEl.value, exactMatch:false, noneOrEmpty:false});
+	  }
+	}
+
+	//Update filters on value change
+	document.getElementById("filter-field").addEventListener("change", updateFilter);
+	document.getElementById("filter-value").addEventListener("keyup", updateFilter);
+
+	//Clear filters on "Clear Filters" button click
+	document.getElementById("filter-clear").addEventListener("click", function(){
+	  fieldEl.value = "";
+	  valueEl.value = "";
+	  quickEl.value = "";
+	  table.clearFilter();
+	});
+
    </script>
+	<TABLE class="detailstable">
+		<COLGROUP>
+		<COL>
+		<COL>
+		<COL style="width:170px;">
+		<COL>
+		<COL>
+		</COLGROUP>
+		<TR><TD rowspan="5"><a href="" id="coverimagelink"><img height="90" style="max-width: 100%;" id="coverimage" src=""></a></TD><TD colspan="4"></TD></TR>
+		<TR><TD><B>Name</B></TD><TD colspan="3" id="name"></TD></TR>
+		<TR><TD><B>Last Activity</B></TD><TD id="lastactivity"></TD><TD><B>Category</B></TD><TD id="data"></TD></TR>
+		<TR><TD><B>Added</B></TD><TD id="addeddate"></TD><TD><B>Source</B></TD><TD id="source"></TR>
+		<TR><TD><B>Playtime</B></TD><TD id="playtime"></TD><TD><B>Platform</B></TD><TD id="platform"></TD></TR>
+	</TABLE>
+	</body>
 </html>
